@@ -3,11 +3,6 @@
 	    {!! Form::label('client_id', 'Client:', array('class'=>'col-md-2 control-label')) !!}
 	    <div class="col-md-6">{!! Form::select('client_id', $clients, array('class' => 'form-control select2')) !!}</div>
 	</div>
-	 
-	<div class="form-group row">
-	    {!! Form::label('user_id', 'User:', array('class'=>'col-md-2 control-label')) !!}
-	    <div class="col-md-6">{!! Form::select('user_id', $users, array('class' => 'form-control select2')) !!}</div>
-	</div>
 
 	<div class="form-group row">
 	    {!! Form::label('status_id', 'Status:', array('class'=>'col-md-2 control-label')) !!}

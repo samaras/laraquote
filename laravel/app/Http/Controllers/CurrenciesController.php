@@ -11,6 +11,33 @@ use App\Repositories\CurrencyRepository;
 
 class CurrenciesController extends Controller
 {
+    protected $page_title = 'Currencies';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+    /**
+     * CurrencyRepository instance
+     */
+    protected $repo;
+
+    /**
+     * Constructor 
+     *
+     * @param CurrencyRepository $currency
+     * @return void
+     */
+    public function __construct(CurrencyRepository $currency)
+    {
+        $this->repo = $currency;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +45,7 @@ class CurrenciesController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::paginate(2);
+        $currencies = $this->repo->getPaginate(10);
         return view('currencies.index', ['currencies' => $currencies, 'page_title' => 'Currency']);
     }
 

@@ -15,6 +15,16 @@ use App\Repositories\QuoteRepository;
 
 class AdminController extends Controller
 {
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('admin');
+	}
+
 	/**
 	 * Display a default dashboard
 	 *

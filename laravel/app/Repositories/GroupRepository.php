@@ -16,6 +16,16 @@ class GroupRepository extends BaseRepository
 	{
 		$this->model = $group;
 	}
+	
+	/**
+	 * Get all groups/roles
+	 * 
+	 * @return Illuminate\Support\Collection
+	 */
+	public function all()
+	{
+		return $this->model->all();
+	}
 
 	/**
 	 * Get Group by id with users
@@ -25,5 +35,18 @@ class GroupRepository extends BaseRepository
 	public function getByIdWithUsers($id)
 	{
 		return $this->model->with('users')->find($id);
+	}
+	
+	/**
+	 * Get groups collection.
+	 *
+	 * @param  App\Models\User
+	 * @return Array
+	 */
+	public function getAllSelect()
+	{
+		$select = $this->all()->pluck('group', 'id');
+
+		return compact('select');
 	}
 }

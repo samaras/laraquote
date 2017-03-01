@@ -12,6 +12,31 @@ use App\Repositories\GroupRepository;
 
 class UsersController extends Controller
 {
+    protected $page_title = 'Users';
+
+    /**
+     * @var UserRepository instance
+     */
+    protected $repo;
+
+    /**
+     * GroupRepository object 
+     */
+    protected $groupRepo;
+
+    /**
+     * Constructor
+     * 
+     * @param GroupRepository
+     * @param UserRepository
+     * @return void
+     */
+    public function __construct(GroupRepository $group, UserRepository $user)
+    {
+        $this->repo = $user;
+        $this->groupRepo = $group;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +44,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = $this->repo->getPaginate(10);
         return view('users.index', ['users' => $users]);
     }
 
@@ -43,6 +68,9 @@ class UsersController extends Controller
     {
         $user = new User();
         $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('first_name'));
         
         $message = 'User saved successfully';
         $user->save();
@@ -57,7 +85,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = $this->repo->getById($id);
         return view('users.show', ['user' => $user]);
     }
 
@@ -69,7 +97,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = $this->repo->getById($id);
         return view('users.edit', ['user' => $user]);
     }
 
@@ -93,7 +121,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = $this->repo->getById($id);
         if($user)
         {
             $user->delete();

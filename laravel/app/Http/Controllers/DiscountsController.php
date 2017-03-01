@@ -11,6 +11,33 @@ use App\Repositories\DiscountRepository;
 
 class DiscountsController extends Controller
 {
+    protected $page_title = 'Discount';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+    /**
+     * DiscountRepository instance
+     */
+    protected $repo;
+
+    /**
+     * Constructor 
+     *
+     * @param DiscountRepository $discount
+     * @return void
+     */
+    public function __construct(DiscountRepository $discount)
+    {
+        $this->repo = $discount;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +45,7 @@ class DiscountsController extends Controller
      */
     public function index()
     {
-        $discounts = Discount::paginate(10);
+        $discounts = $this->repo->getPaginate(10);
         return view('discounts.index', ['discounts' => $discounts]);
     } 
 

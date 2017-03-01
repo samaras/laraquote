@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\Input;
 
 class CategoriesController extends Controller
 {
+    protected $page_title = 'Categories';
+
+    /**
+     * CategoryRepository instance
+     */
+    protected $repo;
+
+    /**
+     * ProductRepository instance
+     */
+    protected $product;
+
+    /**
+     * Constructor 
+     *
+     * @param CategoryRepository $category
+     * @return void
+     */
+    public function __construct(CategoryRepository $category, ProductRepository $product)
+    {
+        $this->repo = $category;
+        $this->product = $product;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +44,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
-        return view('categories.index', ['categories' => $categories]);
+        $categories = $this->repo->getPaginate(10);
+        return view('categories.index', compact('categories', 'page_title'));
     }
 
     /**

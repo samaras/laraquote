@@ -17,6 +17,38 @@ use App\Repositories\ClientRepository;
 
 class QuotesController extends Controller
 {
+    protected $page_title = 'Quotes';
+
+    /**
+     * QuoteRepo object instance
+     */
+    protected $repo;
+
+    /**
+     * UserRepository object
+     */
+    protected $userRepo;
+
+    /**
+     * CLientRepository object
+     */
+    protected $clientRepo;
+
+    /**
+     * Constructor
+     * 
+     * @param QuoteRepository
+     * @param UserRepository
+     * @param ClientRepository
+     * @return void
+     */
+    public function __construct(QuoteRepository $quote, UserRepository $user, ClientRepository $client)
+    {
+        $this->repo = $quote;
+        $this->userRepo = $user;
+        $this->clientRepo = $client;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +56,7 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        $quotes = Quote::paginate(10);
+        $quotes = $this->repo->getPaginate(10);
         return view('quotes.index', ['quotes' => $quotes]);
     }
 
@@ -36,11 +68,10 @@ class QuotesController extends Controller
     public function create()
     {
         $clients = Client::lists('contact_person', 'id');
-        $users = User::lists('email', 'id');
         $status = Status::lists('status', 'id');
         $discounts = Discount::lists('discount', 'id');
 
-        return view('quotes.create', ['clients' => $clients, 'users' => $users, 'status' => $status, 'discounts' => $discounts]);
+        return view('quotes.create', ['clients' => $clients, 'status' => $status, 'discounts' => $discounts]);
     }
 
     /**
@@ -114,6 +145,9 @@ class QuotesController extends Controller
     public function destroy($id)
     {
         $quote = Quotes::find($id);
+        
+        $this->authorize('change', $quote);
+        
         if($quote)
         {
             $quote->delete();

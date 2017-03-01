@@ -12,6 +12,22 @@ use App\Repositories\ClientRepository;
 class ClientsController extends Controller
 {
 	protected $page_title = 'Clients';
+
+    /**
+     * ClientsRepository instance
+     */
+    protected $repo;
+
+    /**
+     * Constructor 
+     *
+     * @param ClientsRepository $clients
+     * @return void
+     */
+    public function __construct(ClientRepository $client)
+    {
+        $this->repo = $client;
+    }
 	
     /**
      * Display a listing of the resource.
@@ -20,7 +36,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(1);
+        $clients = $this->repo->getPaginate(10);
         $page_title = $this->page_title;
         
         return view('clients.index', compact('clients','page_title'));

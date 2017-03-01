@@ -12,6 +12,40 @@ use App\Repositories\UserRepository;
 
 class GroupsController extends Controller
 {
+    protected $page_title = 'Groups/Role';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+    /**
+     * GroupRepo object instance
+     */
+    protected $repo;
+
+    /**
+     * UserRepository object
+     */
+    protected $userRepo;
+
+    /**
+     * Constructor
+     * 
+     * @param GroupRepository
+     * @param UserRepository
+     * @return void
+     */
+    public function __construct(GroupRepository $group, UserRepository $user)
+    {
+        $this->repo = $group;
+        $this->userRepo = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +53,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Group::paginate(10);
-        return view('groups.index', ['groups' => $groups]);
+        $groups = $this->repo->getPaginate(10);
+        return view('groups.index', compact('groups'));
     }
 
     /**
