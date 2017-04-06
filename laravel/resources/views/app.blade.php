@@ -171,7 +171,7 @@
         <section class="content-header">
 			@include('pageheader', ['page_title' => $page_title])
           	<ol class="breadcrumb">
-            	<li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            	<li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
             	<li class="active">@yield('active_link')</li>
           	</ol>
         </section>

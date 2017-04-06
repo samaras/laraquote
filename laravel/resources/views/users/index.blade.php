@@ -40,6 +40,7 @@
 									@foreach( $users as $user )
 					                <tr>
 					                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy'))) !!}
+                                            <td></td>
 					                        <td><a href="{{ route('users.show', $user->id) }}">{{ $user->first_name }}</a></td>
 					                        <td><a href="{{ route('users.show', $user->id) }}">{{ $user->last_name }}</a></td>
 					                        <td>{{ $user->email }}</td>
@@ -53,7 +54,7 @@
 
 					                        </td>
 					                        <td>Sales</td>
-					                        <td>{{ Carbon::now() }}</td>
+					                        <td></td>
 					                        <td style="text-align: center">
 					                            {!! link_to_route('users.edit', 'Edit', $user->id, array('class' => 'btn btn-info')) !!},
 					                            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}

@@ -14,15 +14,6 @@ class DiscountsController extends Controller
     protected $page_title = 'Discount';
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
-
-    /**
      * DiscountRepository instance
      */
     protected $repo;
@@ -36,6 +27,9 @@ class DiscountsController extends Controller
     public function __construct(DiscountRepository $discount)
     {
         $this->repo = $discount;
+
+        $this->middleware('auth');
+        //$this->middleware('admin');
     }
 
     /**

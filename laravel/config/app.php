@@ -14,7 +14,16 @@ return [
     */
 
     'debug' => env('APP_DEBUG', true),
-
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Added after upgrade to 5.2
+    |--------------------------------------------------------------------------
+    |
+    */
+    
+    'env' => env('APP_ENV', 'production'),
+    
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -78,7 +87,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'SfhVxAQ4WkBFWLRFA2uKzNyn0G6CThX0nN7mM2hiHWQ='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -113,13 +122,11 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Routing\ControllerServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,

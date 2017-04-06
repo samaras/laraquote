@@ -51,13 +51,13 @@ class Pivot extends Model
         // The pivot model is a "dynamic" model since we will set the tables dynamically
         // for the instance. This allows it work for any intermediate tables for the
         // many to many relationship that are defined by this developer's classes.
-        $this->forceFill($attributes);
-
-        $this->syncOriginal();
-
         $this->setTable($table);
 
         $this->setConnection($parent->getConnectionName());
+
+        $this->forceFill($attributes);
+
+        $this->syncOriginal();
 
         // We store off the parent instance so we will access the timestamp column names
         // for the model, since the pivot model timestamps aren't easily configurable
@@ -67,6 +67,24 @@ class Pivot extends Model
         $this->exists = $exists;
 
         $this->timestamps = $this->hasTimestampAttributes();
+    }
+
+    /**
+     * Create a new pivot model from raw values returned from a query.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $parent
+     * @param  array   $attributes
+     * @param  string  $table
+     * @param  bool    $exists
+     * @return static
+     */
+    public static function fromRawAttributes(Model $parent, $attributes, $table, $exists = false)
+    {
+        $instance = new static($parent, $attributes, $table, $exists);
+
+        $instance->setRawAttributes($attributes, true);
+
+        return $instance;
     }
 
     /**

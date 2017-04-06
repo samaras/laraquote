@@ -15,15 +15,6 @@ class GroupsController extends Controller
     protected $page_title = 'Groups/Role';
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
-
-    /**
      * GroupRepo object instance
      */
     protected $repo;
@@ -42,6 +33,9 @@ class GroupsController extends Controller
      */
     public function __construct(GroupRepository $group, UserRepository $user)
     {
+        $this->middleware('auth');
+        //$this->middleware('admin');
+
         $this->repo = $group;
         $this->userRepo = $user;
     }

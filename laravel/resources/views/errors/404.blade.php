@@ -47,7 +47,7 @@
               <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
               <p>
                 We could not find the page you were looking for.
-                Meanwhile, you may <a href="{{ url('/home')}}">return to dashboard.</a>
+                Meanwhile, you may <a href="{{ url('/')}}">return to dashboard.</a>
               </p>
             </div><!-- /.error-content -->
           </div><!-- /.error-page -->

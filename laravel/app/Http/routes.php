@@ -17,7 +17,7 @@ Route::pattern('lang', '[0-9a-z]+');
 
 Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index']);
 
-
+/*
 // Authentication routes...
 Route::group(['namespace' => 'auth'], function() {
 	Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
@@ -52,7 +52,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');*/
 
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
@@ -67,10 +67,15 @@ Route::resource('status', 'StatusController');
 //Route::group(['middleware' => 'auth', 'before' => 'has_role:admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
 Route::get('/', 'AdminController@index');
 
-Route::get('users', ['as' => 'admin.users', 'uses' => 'UsersController@index']);
-Route::get('users/search', ['as' => 'admin.users.search', 'uses' => 'UsersController@search']);
-Route::get('users/create', 'UsersController@create');
-Route::get('edit/{user}', 'UsersController@edit');
-Route::post('edit/{user}', 'UsersController@postEdit');
-Route::put('manage-quotes/{user}', 'UsersController@manageQuotes');
+Route::get('users', ['as' => 'users', 'uses' => 'UsersController@index']);
+Route::get('users/search', ['as' => 'users.search', 'uses' => 'UsersController@search']);
+Route::get('users/create', ['as' => 'users.create', 'uses' => 'UsersController@create']);
+Route::delete('users/{users}', ['as' => 'users.destroy', 'uses' => 'UsersController@destroy']);
+Route::get('users/{users}/edit', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
+Route::get('users/{users}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
+Route::post('users', ['as' => 'users.store', 'uses' => 'UsersController@store']);
+Route::put('manage-quotes/{users}', 'UsersController@manageQuotes');
+Route::put('users/{users}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
+//| PATCH | quotes/{quotes} | App\Http\Controllers\QuotesController@update 
+
 //});

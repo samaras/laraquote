@@ -99,6 +99,24 @@ class RouteCollection implements Countable, IteratorAggregate
     }
 
     /**
+     * Refresh the name look-up table.
+     *
+     * This is done in case any names are fluently defined.
+     *
+     * @return void
+     */
+    public function refreshNameLookups()
+    {
+        $this->nameList = [];
+
+        foreach ($this->allRoutes as $route) {
+            if ($route->getName()) {
+                $this->nameList[$route->getName()] = $route;
+            }
+        }
+    }
+
+    /**
      * Add a route to the controller action dictionary.
      *
      * @param  array  $action
@@ -131,7 +149,7 @@ class RouteCollection implements Countable, IteratorAggregate
             return $route->bind($request);
         }
 
-        // If no route was found, we will check if a matching is route is specified on
+        // If no route was found we will now check if a matching route is specified by
         // another HTTP verb. If it is we will need to throw a MethodNotAllowed and
         // inform the user agent of which HTTP verb it should use for this route.
         $others = $this->checkForAlternateVerbs($request);
@@ -174,14 +192,13 @@ class RouteCollection implements Countable, IteratorAggregate
      * @param  array  $methods
      * @return \Illuminate\Routing\Route
      *
-     * @throws \Symfony\Component\Routing\Exception\MethodNotAllowedHttpException
+     * @throws \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      */
     protected function getRouteForMethods($request, array $methods)
     {
         if ($request->method() == 'OPTIONS') {
             return (new Route('OPTIONS', $request->path(), function () use ($methods) {
                 return new Response('', 200, ['Allow' => implode(',', $methods)]);
-
             }))->bind($request);
         }
 
@@ -222,7 +239,7 @@ class RouteCollection implements Countable, IteratorAggregate
      * @param  string|null  $method
      * @return array
      */
-    protected function get($method = null)
+    public function get($method = null)
     {
         if (is_null($method)) {
             return $this->getRoutes();
@@ -272,6 +289,16 @@ class RouteCollection implements Countable, IteratorAggregate
     public function getRoutes()
     {
         return array_values($this->allRoutes);
+    }
+
+    /**
+     * Get all of the routes keyed by their HTTP verb / method.
+     *
+     * @return array
+     */
+    public function getRoutesByMethod()
+    {
+        return $this->routes;
     }
 
     /**

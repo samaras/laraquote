@@ -14,15 +14,6 @@ class CurrenciesController extends Controller
     protected $page_title = 'Currencies';
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
-
-    /**
      * CurrencyRepository instance
      */
     protected $repo;
@@ -36,6 +27,9 @@ class CurrenciesController extends Controller
     public function __construct(CurrencyRepository $currency)
     {
         $this->repo = $currency;
+
+        $this->middleware('auth');
+        //$this->middleware('admin');
     }
 
     /**
