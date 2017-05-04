@@ -28,7 +28,7 @@
                                 <tbody>
             			            @foreach( $discounts as $discount )
             			                <tr role="row" class="odd">
-            			                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('discounts.destroy'))) !!}
+            			                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('discounts.destroy', $discount->id))) !!}
 												<td> # </td>
             			                        <td><a href="{{ route('discounts.show', $discount->id) }}">{{ $discount->discount }}</a></td>
             			                        <td></td>

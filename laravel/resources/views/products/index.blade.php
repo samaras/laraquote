@@ -31,7 +31,7 @@
 							<tbody>
 							@foreach( $products as $product )
 								<tr>
-									{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('products.destroy'))) !!}
+									{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('products.destroy', $product->id))) !!}
 										<td><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></td>
 										<td>{{ $product->category->category }}</td>
 										<td>{{ $product->description }}</td>

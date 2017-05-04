@@ -17,8 +17,9 @@ Route::pattern('lang', '[0-9a-z]+');
 
 Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index']);
 
-/*
+
 // Authentication routes...
+/*
 Route::group(['namespace' => 'auth'], function() {
 	Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
 	Route::get('signup', ['as' => 'signup','uses' => 'AuthController@signup']);
@@ -28,7 +29,7 @@ Route::group(['namespace' => 'auth'], function() {
 	Route::get('confirm-email/{confirmation_code}', ['as' => 'auth.confirm', 'uses' => 'AuthController@confirmEmail']);
     Route::get('resend-email-confirmation', ['as' => 'auth.reconfirm', 'uses' => 'AuthController@resendEmailConfirmation']);
 });
-
+*/
 // Users
 Route::get('user/{username}', ['as' => 'user', 'uses' => 'UsersController@profile']);
 Route::get('user/{username}/quotes', 'UsersController@getQuotes');	
@@ -52,7 +53,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');*/
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');

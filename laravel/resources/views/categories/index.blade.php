@@ -28,7 +28,7 @@
 								<tbody>
 								@foreach( $categories as $category )
 									<tr role="row" class="odd">
-										{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('categories.destroy'))) !!}
+										{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('categories.destroy', $category->id))) !!}
 											<td><a href="{{ route('categories.show', $category->id) }}">{{ $category->category }}</a></td>
 											<td></td>
 											<td style="text-align: center">

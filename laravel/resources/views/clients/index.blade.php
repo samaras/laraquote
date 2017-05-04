@@ -41,7 +41,7 @@
 									@else
 										@foreach( $clients as $client )
 											<tr role="row" class="odd">
-												{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('clients.destroy'))) !!}
+												{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('clients.destroy', $client->id))) !!}
 													<td> # </td>
 													<td><a href="{{ route('clients.show', $client->id) }}">{{ $client->contact_person }} ({{ $client->company }})</a></td>
 													<td style="overflow: hidden;">{{ $client->address }}, {{ $client->address_line1 }}, {{ $client->address_line2 }}, {{ $client->address_line3 }},</td>

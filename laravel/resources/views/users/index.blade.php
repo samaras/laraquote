@@ -39,7 +39,7 @@
 								@else
 									@foreach( $users as $user )
 					                <tr>
-					                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy'))) !!}
+					                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user->id))) !!}
                                             <td></td>
 					                        <td><a href="{{ route('users.show', $user->id) }}">{{ $user->first_name }}</a></td>
 					                        <td><a href="{{ route('users.show', $user->id) }}">{{ $user->last_name }}</a></td>

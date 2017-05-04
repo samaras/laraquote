@@ -30,7 +30,7 @@
 			                    <tbody>
 						            @foreach( $currencies as $currency )
 						                <tr role="row" class="odd">
-					                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('currencies.destroy'))) !!}
+					                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('currencies.destroy', $currency->id))) !!}
 					                        <td><a href="{{ route('currencies.show', $currency->id) }}">{{ $currency->currency }}</a></td>
 					                        <td>{{ $currency->code }}</td>
 					                        <td>{{ $currency->symbol }}</td>

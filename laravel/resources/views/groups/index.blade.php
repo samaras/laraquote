@@ -36,7 +36,7 @@
 							@else
 								@foreach( $groups as $group )
         			                <tr>
-        			                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('groups.destroy'))) !!}
+        			                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('groups.destroy', $group->id))) !!}
 											<td>#</td>
         			                        <td><a href="{{ route('groups.show', $group->id) }}">{{ $group->group }}</a></td>
         			                        <td>

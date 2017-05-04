@@ -3,7 +3,7 @@
 		<div class="input-group" style="width: 150px;">
 			<input name="table_search" class="form-control input-sm pull-right" placeholder="Search" type="text">
 			<div class="input-group-btn">
-				<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+				<button class="btn btn-sm btn-default" style="height: 30px; width: 40px"><i class="fa fa-search"></i></button>
 			</div>
 		</div>
 	</div>

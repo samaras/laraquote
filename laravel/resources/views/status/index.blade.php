@@ -36,7 +36,7 @@
 							@else
 							@foreach( $status as $st )
 							<tr>
-								{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('status.destroy'))) !!}
+								{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('status.destroy', $st->id))) !!}
 									<td> # </td>
 									<td><a href="{{ route('status.show', $st->id) }}">{{ $st->status }}</a></td>
 									<td></td>

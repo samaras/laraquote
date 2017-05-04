@@ -98,4 +98,48 @@ class User extends Model implements AuthenticatableContract,
 
         return true;
     }
+
+    /**
+     * Check if user has a permission by its name
+     *
+     * @param string|array $permission      Permission string or array of permissions
+     * @return bool
+     */
+    public function can($permission)
+    {
+        if(is_array($permission)) {
+            foreach ($permission as $perm) {
+                $hasPerm = $this->can($perm);
+
+                if($hasPerm) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            // Get users permissions and check if permission is there
+            return true;
+        }
+    }
+
+    /**
+     * Attach user to group
+     *
+     * @param mixed $group
+     */
+    public function attachGroup($group)
+    {
+        $this->groups()->attach($group)
+    }
+
+    /**
+     * Detach user to group
+     *
+     * @param mixed $group
+     */
+    public function detachGroup($group)
+    {
+        $this->groups()->detach($group);
+    }
 }

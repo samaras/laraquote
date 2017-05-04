@@ -33,7 +33,7 @@ class GroupsController extends Controller
      */
     public function __construct(GroupRepository $group, UserRepository $user)
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         //$this->middleware('admin');
 
         $this->repo = $group;

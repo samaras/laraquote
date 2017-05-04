@@ -28,7 +28,7 @@ class DiscountsController extends Controller
     {
         $this->repo = $discount;
 
-        $this->middleware('auth');
+        //$this->middleware('auth');
         //$this->middleware('admin');
     }
 

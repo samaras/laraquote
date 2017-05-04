@@ -31,4 +31,81 @@ class Group extends Model
 	{
 		return $this->belongsToMany('User');
 	}
+
+	/**
+   	 * Permissions belong to many groups
+   	 *
+    public function permissions()
+    {
+        $this->belongsToMany('Permission');
+    }*/
+
+    /**
+     * Many-to-Many relations with the permission model.
+     * Named "perms" for backwards compatibility. Also because "perms" is short and sweet.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('Permission', 'GroupPermission', 'group_id', 'permission_id');
+    }
+
+    /** 
+     * Checks if the group has a permission by its name.
+     *
+     * @param string|array $perm 	Permission name or array of permissions
+     * @return bool
+     */
+    public function hasPermission($perm)
+    {
+    	if(is_array($perm)) {
+    		foreach ($perm as $p) {
+    			$hasPermission = $this->hasPermission($p);
+
+    			if($hasPermission) {
+    				return true;
+    			}
+    		}
+
+    		return false;
+    	}
+    }
+
+    /**
+     * Save the permissions
+     *
+     * @param mixed $inputPerms
+     * @return void
+     */
+    public function savePermissions($inputPerms)
+    {
+    	if(!empty($inputPerms)) {
+    		$this->perms()->sync($inputPerms);
+    	} else {
+    		$this->perms()->detach();
+    	}
+    }
+
+    /**
+     * Attach permission to current group
+     *
+     * @param object|array $permission
+     * @return void
+     */
+    public function attachPermission($permission)
+    {
+    	$this->perms()->attach($permission);
+    }
+
+    /**
+     * Attach permission to current group
+     *
+     * @param object|array $permission
+     * @return void
+     */
+    public function detachPermission($permission)
+    {
+    	$this->perms()->detach($permission);
+    }
 }
