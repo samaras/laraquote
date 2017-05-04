@@ -1,13 +1,13 @@
-<?php
+<?php 
 
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Group
+class Admin 
 {
-    /**
+	/**
      * The Guard implementation.
      *
      * @var Guard
@@ -24,6 +24,7 @@ class Group
     {
         $this->auth = $auth;
     }
+
     /**
      * Handle an incoming request.
      *
@@ -31,15 +32,10 @@ class Group
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $groups)
+    public function handle($request, Closure $next)
     {
-        if(!is_array($groups)) {
-            $groups = explode('|', $groups);
-        }
-
-        if($this->auth->guest() || !$request->user()->hasGroup($groups))
-        {
-            abort(403);
+        if ($this->auth->check()) {
+            return redirect('/');
         }
 
         return $next($request);
