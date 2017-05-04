@@ -130,7 +130,7 @@ class User extends Model implements AuthenticatableContract,
      */
     public function attachGroup($group)
     {
-        $this->groups()->attach($group)
+        $this->groups()->attach($group);
     }
 
     /**
