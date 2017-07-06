@@ -7,7 +7,7 @@
 @section('content')
 	<div class="col-xs-12">
 		<div class="box box-primary">
-			<div>
+			<div class="box-header with-border">
 				<div class="col-md-6" style="padding-top: 5px">{!! link_to_route('clients.create', 'Create Client', array(), ['class' => 'btn btn-default']) !!}</div>
 				<div class="col-md-6">@include('toolboxsearch')</div>
 			</div>
