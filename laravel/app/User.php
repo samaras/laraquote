@@ -105,7 +105,7 @@ class User extends Model implements AuthenticatableContract,
      * @param string|array $permission      Permission string or array of permissions
      * @return bool
      */
-    public function can($permission)
+    public function can($permission, $arguments = [])
     {
         if(is_array($permission)) {
             foreach ($permission as $perm) {

@@ -33,6 +33,7 @@ Route::group(['namespace' => 'auth'], function() {
 // Users
 Route::get('user/{username}', ['as' => 'user', 'uses' => 'UsersController@profile']);
 Route::get('user/{username}/quotes', 'UsersController@getQuotes');	
+Route::get('profile', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
