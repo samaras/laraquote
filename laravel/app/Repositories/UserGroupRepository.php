@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\UserGroup;
+use App\Models\UserGroup;
 
 class UserGroupRepository extends BaseRepository
 {

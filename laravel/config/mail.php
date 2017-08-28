@@ -54,7 +54,8 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => [
+        'address' => 'laraquote@obrerosoft.com', 'name' => 'Laraquote'],
 
     /*
     |--------------------------------------------------------------------------

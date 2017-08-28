@@ -118,7 +118,7 @@
                   				<img src="{{ asset('/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
                   				<!-- hidden-xs hides the username on small devices so only the image appears. -->
                   				@if (Auth::check())
-									<span class="hidden-xs">{{ Auth::user()->username }}</span>
+											<span class="hidden-xs">{{ Auth::user()->username }}</span>
                   				@endif
                   				<span class="hidden-xs">Samaras</span>
                 			</a>
@@ -129,8 +129,8 @@
                     			<p>
                       				Samuel Komfi
                       				@if (Auth::check())
-										{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-									@endif
+												{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+											@endif
                       				<small>Member since Nov. 2012</small>
                     			</p>
                   		</li>
@@ -146,10 +146,10 @@
                   		<!-- Menu Footer-->
                   		<li class="user-footer">
                     		<div class="pull-left">
-                      			<a href="#" class="btn btn-default btn-flat">Profile</a>
+                      			<a href="{{ url('/user/profile/Auth::user()->id') }}" class="btn btn-default btn-flat">Profile</a>
                     		</div>
                     		<div class="pull-right">
-                      			<a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                      			<a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                     		</div>
                   		</li>
                 	</ul>
