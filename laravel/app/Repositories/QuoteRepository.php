@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Quote;
+use App\Models\Quote;
 
 class QuoteRepository extends BaseRepository
 {

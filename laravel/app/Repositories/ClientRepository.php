@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Client;
+use App\Models\Client;
 
 class ClientRepository extends BaseRepository
 {

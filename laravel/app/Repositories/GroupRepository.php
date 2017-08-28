@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Group;
+use App\Models\Group;
 
 class GroupRepository extends BaseRepository
 {

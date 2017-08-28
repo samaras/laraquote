@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '';
 
     /**
      * Create a new controller instance.
@@ -48,9 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|max:30',
+            'password_confirmation' => 'required|same:password',
+
+            'first_name.required' => 'First Name is required',
+            'last_name.required' => 'Last Name required',
+            'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password needs to have at least 6 characters',
+            'password.max' => 'Password maximum length is 30 characters!'
         ]);
     }
 
@@ -63,9 +75,26 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(Request $request) 
+    {
+        $validator = $this->validator($request->all());
+
+        if($validator->fails()) {
+            $this->throwValidationException($request, $validator);
+        }
+
+        // create the user
+        $user = $this->create($request->all());
+
+        // TODO: Add user to sales person group
+
+        return redirect('/login')->with('message', 'Sales Person created, wait for admin to activate you before you can login.')->with('status', 'success');
     }
 }

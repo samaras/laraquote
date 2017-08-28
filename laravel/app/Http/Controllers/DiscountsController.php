@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Discount;
+use App\Models\Discount;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\DiscountRepository;

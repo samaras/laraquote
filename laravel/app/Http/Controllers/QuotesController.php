@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Quote;
-use App\Client;
-use App\User;
-use App\Status;
-use App\Discount;
+use App\Models\Quote;
+use App\Models\Client;
+use App\Models\User;
+use App\Models\Status;
+use App\Models\Discount;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\QuoteRepository;

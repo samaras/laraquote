@@ -63,12 +63,12 @@ class User extends Model implements AuthenticatableContract,
 
     public function quote()
     {
-        return $this->hasMany('App\Quote', 'id');
+        return $this->hasMany('App\Models\Quote', 'id');
     }
 
     public function group()
     {
-        return $this->hasManyThrough('App\Group', 'App\UserGroup');
+        return $this->hasManyThrough('App\Models\Group', 'App\Models\UserGroup');
     }
 
     public function getGroups() {
@@ -142,5 +142,15 @@ class User extends Model implements AuthenticatableContract,
     public function detachGroup($group)
     {
         $this->groups()->detach($group);
+    }
+
+    /**
+     * Overriding the sendPasswordResetNotification
+     *
+     * @var array
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
     }
 }

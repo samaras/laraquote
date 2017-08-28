@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\ExchangeFxPrice;
+use App\Models\ExchangeFxPrice;
 
 class ExchangePriceRepository extends BaseRepository
 {

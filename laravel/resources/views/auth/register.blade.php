@@ -16,7 +16,7 @@
 			</div>
 		@endif
 
-		<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+		<form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<div class="form-group has-feedback">
@@ -60,6 +60,6 @@
 	</div>
 </div>
 <div class="text-center">
-	<a href="{{ url('/auth/login') }}" class="text-center">I already have membership</a>
+	<a href="{{ url('/login') }}" class="text-center">I already have membership</a>
 </div>
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Status;
+use App\Models\Status;
 
 class StatusRepository extends BaseRepository
 {
