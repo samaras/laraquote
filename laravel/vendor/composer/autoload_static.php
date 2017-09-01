@@ -319,6 +319,7 @@ class ComposerStaticInitdf0083b82ec22b14571b5067178005de
         'CreateGroupsAccessTable' => __DIR__ . '/../..' . '/database/migrations/2015_09_16_144353_create_groups_access_table.php',
         'CreateGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2015_09_16_144251_create_groups_table.php',
         'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2015_09_20_115315_create_jobs_table.php',
+        'CreateNotificationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_01_145649_create_notifications_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePermissionsGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_195755_create_permissions_groups_table.php',
         'CreatePermissionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_03_145317_create_permissions_table.php',

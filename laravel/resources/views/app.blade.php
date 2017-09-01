@@ -58,13 +58,13 @@
           		<div class="navbar-custom-menu">
             		<ul class="nav navbar-nav">
               			<!-- Notifications Menu -->
-							@includeIf('notifications.info_menu')              			
+							      @includeIf('info_menu')              			
               			
               			<!-- Tasks Menu -->
-              			@includeIf('notifications.task_menu')
+              			@includeIf('task_menu')
               			
               			<!-- User Account Menu -->
-              			@includeIf('notifications.user_menu')
+              			@includeIf('user_menu')
                 	</ul>
               	</li>
               	<!-- Control Sidebar Toggle Button -->

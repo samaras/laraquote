@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Group;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -70,16 +71,23 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'token' => str_random(64),
+            'activated' => true
         ]);
+
+        $role = Group::whereGroup('sales')->first();
+        $user->assignGroup($role);
+
+        return $user;
     }
 
     public function register(Request $request) 

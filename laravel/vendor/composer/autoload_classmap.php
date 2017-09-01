@@ -17,6 +17,7 @@ return array(
     'CreateGroupsAccessTable' => $baseDir . '/database/migrations/2015_09_16_144353_create_groups_access_table.php',
     'CreateGroupsTable' => $baseDir . '/database/migrations/2015_09_16_144251_create_groups_table.php',
     'CreateJobsTable' => $baseDir . '/database/migrations/2015_09_20_115315_create_jobs_table.php',
+    'CreateNotificationsTable' => $baseDir . '/database/migrations/2017_09_01_145649_create_notifications_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePermissionsGroupsTable' => $baseDir . '/database/migrations/2017_05_04_195755_create_permissions_groups_table.php',
     'CreatePermissionsTable' => $baseDir . '/database/migrations/2017_05_03_145317_create_permissions_table.php',
