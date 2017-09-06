@@ -102,6 +102,18 @@ class UsersController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function profile($id)
+    {
+        $user = $this->repo->getById($id);
+        return view('users.edit', ['id' => $id, 'user' => $user]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  Request  $request

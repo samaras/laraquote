@@ -15,7 +15,7 @@
 Route::pattern('id', '[0-9]+');
 Route::pattern('lang', '[0-9a-z]+');
 
-Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index', 'middleware'=> 'auth']);
 
 
 // Authentication routes...
@@ -31,9 +31,8 @@ Route::group(['namespace' => 'auth'], function() {
 });
 */
 // Users
-Route::get('user/{username}', ['as' => 'user', 'uses' => 'UsersController@profile']);
-Route::get('user/{username}/quotes', 'UsersController@getQuotes');	
-Route::get('profile', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');
+Route::get('user/{user}/quotes', 'UsersController@getQuotes');	
+Route::get('profile/{user}', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');
 
 // Authentication routes...
 Auth::routes();
@@ -54,12 +53,12 @@ Route::get('/', 'AdminController@index');
 Route::get('users', ['as' => 'users', 'uses' => 'UsersController@index']);
 Route::get('users/search', ['as' => 'users.search', 'uses' => 'UsersController@search']);
 Route::get('users/create', ['as' => 'users.create', 'uses' => 'UsersController@create']);
-Route::delete('users/{users}', ['as' => 'users.destroy', 'uses' => 'UsersController@destroy']);
-Route::get('users/{users}/edit', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
-Route::get('users/{users}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
+Route::delete('users/{user}', ['as' => 'users.destroy', 'uses' => 'UsersController@destroy']);
+Route::get('users/{user}/edit', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
+Route::get('users/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 Route::post('users', ['as' => 'users.store', 'uses' => 'UsersController@store']);
 Route::put('manage-quotes/{users}', 'UsersController@manageQuotes');
-Route::put('users/{users}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
+Route::put('users/{user}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
 //| PATCH | quotes/{quotes} | App\Http\Controllers\QuotesController@update 
 
 //});

@@ -7,14 +7,14 @@
 		@if (Auth::check())
 			<span class="hidden-xs">{{ Auth::user()->email }}</span>
 		@endif
-		<span class="hidden-xs">skomfi@gmail.com</span>
+		<!--<span class="hidden-xs">skomfi@gmail.com</span>-->
 	</a>
 	<ul class="dropdown-menu">
 		<!-- The user image in the menu -->
 		<li class="user-header">
 		<img src="{{ asset('/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 		<p>
-			Samuel Komfi
+			<!--Samuel Komfi-->
 			@if(Auth::check())
 				{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
 			@endif
@@ -33,7 +33,7 @@
 <!-- Menu Footer-->
 <li class="user-footer">
 	<div class="pull-left">
-		<a href="{{ url('/user/profile/'. Auth::id()) }}" class="btn btn-default btn-flat">Profile</a>
+		<a href="{{ url('/profile/'. Auth::id()) }}" class="btn btn-default btn-flat">Profile</a>
 	</div>
 	<div class="pull-right">
 		<a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
