@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends BaseRepository
 {
@@ -15,6 +16,17 @@ class CategoryRepository extends BaseRepository
 	public function __construct(Category $category)
 	{
 		$this->model = $category;
+	}
+
+	/**
+	 * Get all the categories in the db
+	 *
+	 * @return Illuminate\Collections
+	 */
+	public function getCategories()
+	{
+		$cats = Category::all(['id', 'category']);
+		return $cats;
 	}
 
 	/**

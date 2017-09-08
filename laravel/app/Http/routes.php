@@ -17,19 +17,6 @@ Route::pattern('lang', '[0-9a-z]+');
 
 Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index', 'middleware'=> 'auth']);
 
-
-// Authentication routes...
-/*
-Route::group(['namespace' => 'auth'], function() {
-	Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
-	Route::get('signup', ['as' => 'signup','uses' => 'AuthController@signup']);
-	Route::post('signup', 'AuthController@postLogin');
-	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
-
-	Route::get('confirm-email/{confirmation_code}', ['as' => 'auth.confirm', 'uses' => 'AuthController@confirmEmail']);
-    Route::get('resend-email-confirmation', ['as' => 'auth.reconfirm', 'uses' => 'AuthController@resendEmailConfirmation']);
-});
-*/
 // Users
 Route::get('user/{user}/quotes', 'UsersController@getQuotes');	
 Route::get('profile/{user}', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');

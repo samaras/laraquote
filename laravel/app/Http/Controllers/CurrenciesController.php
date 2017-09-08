@@ -28,7 +28,7 @@ class CurrenciesController extends Controller
     {
         $this->repo = $currency;
 
-        //$this->middleware('auth');
+        $this->middleware('auth');
         //$this->middleware('admin');
     }
 

@@ -1,5 +1,8 @@
 <?php 
 
+use App\Models\User;
+use App\Models\Permission;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use App\Models\Group;
 

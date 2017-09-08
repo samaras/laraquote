@@ -45,7 +45,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = $this->repo->getPaginate(10);
-        return view('users.index', ['users' => $users]);
+        return view('users.index', ['users' => $users, 'page_title' => $this->page_title]);
     }
 
     /**
@@ -86,7 +86,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = $this->repo->getById($id);
-        return view('users.show', ['user' => $user]);
+        return view('users.show', ['user' => $user, 'page_title' => $this->page_title]);
     }
 
     /**
@@ -98,7 +98,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = $this->repo->getById($id);
-        return view('users.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user, 'page_title' => $this->page_title]);
     }
 
     /**
@@ -110,7 +110,7 @@ class UsersController extends Controller
     public function profile($id)
     {
         $user = $this->repo->getById($id);
-        return view('users.edit', ['id' => $id, 'user' => $user]);
+        return view('users.edit', ['user' => $user, 'page_title' => $this->page_title]);
     }
 
     /**

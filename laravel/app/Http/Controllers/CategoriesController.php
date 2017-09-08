@@ -55,7 +55,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $categories = Category::lists('category', 'id');
+        $categories = $this->repo->getCategories();
         return view('categories.create', ['categories' => $categories]);
     }
 
@@ -97,7 +97,9 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('categories.edit', ['category' => $category]);
+        $categories = $this->repo->getCategories();
+
+        return view('categories.edit', ['category' => $category, 'categories' => $categories]);
     }
 
     /**

@@ -1,13 +1,18 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Permission;
+
 
 class UserSeeder extends Seeder 
 {
 	public function run()
 	{
+		//$faker = Faker\Factory::create();
+
 		DB::table('users')->delete();
 
 		$adminRole = Group::whereGroup('admin')->first();

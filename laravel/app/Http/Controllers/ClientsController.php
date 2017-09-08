@@ -96,10 +96,10 @@ class ClientsController extends Controller
      * @return Response
      */
     public function edit($id)
-    {
+    {   
         // get the client 
         $client = Client::find($id);
-        return view('clients.edit', ['client' => $client]);
+        return view('clients.edit', ['client' => $client, 'page_title' => $this->page_title]);
     }
 
     /**

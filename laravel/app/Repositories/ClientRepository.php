@@ -9,7 +9,7 @@ class ClientRepository extends BaseRepository
 	/**
 	 * Create ClienRepository instance
 	 *
-	 * @param App\Client $client
+	 * @param App\Models\Client $client
 	 * @return void
 	 */
 	public function __construct(Client $client)

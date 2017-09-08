@@ -5,7 +5,7 @@
     	Create Client
     @endsection
  
-    {!! Form::model(new App\Client, ['route' => ['clients.store']]) !!}
+    {!! Form::model(new App\Models\Client, ['route' => ['clients.store']]) !!}
         @include('clients/partials/_form', ['submit_text' => 'Create Client'])
     {!! Form::close() !!}
 @endsection
