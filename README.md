@@ -1,4 +1,4 @@
-## eminutes
+## Laraquote
 Quotation application in Laravel 5.*
 
 ## Requirements
