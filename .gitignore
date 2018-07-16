@@ -1,6 +1,5 @@
-/vendor
-/node_modules
+laravel/vendor/
+laravel/node_modules/
 Homestead.yaml
 Homestead.json
 .env
-node_modules

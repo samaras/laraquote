@@ -21,12 +21,24 @@ class CategoryRepository extends BaseRepository
 	/**
 	 * Get all the categories in the db
 	 *
-	 * @return Illuminate\Collections
+	 * @return Illuminate\Support\Collection
 	 */
-	public function getCategories()
+	public function all()
 	{
-		$cats = Category::all(['id', 'category']);
-		return $cats;
+		return $this->model->all();
+	}
+
+	/**
+	 * Get groups collection.
+	 *
+	 * @param  App\Models\User
+	 * @return Array
+	 */
+	public function getAllSelect()
+	{
+		$select = $this->all()->pluck('category', 'id');
+
+		return compact('select');
 	}
 
 	/**

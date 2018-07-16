@@ -6,5 +6,5 @@
           <b>Version</b> 2.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="http://obrerosoft.com">Obrerosoft (Pty) Ltd</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="http://obrerosoft.com" target="_blank">Obrerosoft (Pty) Ltd</a>.</strong> All rights reserved.
 </footer>

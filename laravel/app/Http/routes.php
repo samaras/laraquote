@@ -17,22 +17,32 @@ Route::pattern('lang', '[0-9a-z]+');
 
 Route::get('/', ['as' => 'home', 'uses' => 'AdminController@index', 'middleware'=> 'auth']);
 
-// Users
-Route::get('user/{user}/quotes', 'UsersController@getQuotes');	
-Route::get('profile/{user}', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');
-
 // Authentication routes...
 Auth::routes();
 
-Route::resource('products', 'ProductsController');
-Route::resource('categories', 'CategoriesController');
-Route::resource('clients', 'ClientsController');
-Route::resource('quotes', 'QuotesController');
-Route::resource('currencies', 'CurrenciesController');
-Route::resource('groups', 'GroupsController');
-Route::resource('discounts', 'DiscountsController');
-Route::resource('status', 'StatusController');
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('products', 'ProductsController');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('clients', 'ClientsController');
+    Route::resource('quotes', 'QuotesController');
+    Route::resource('currencies', 'CurrenciesController');
+    Route::resource('groups', 'GroupsController');
+    Route::resource('discounts', 'DiscountsController');
+    Route::resource('status', 'StatusController');
 
+    Route::get('users/search', ['as' => 'client.search', 'uses' => 'ClientsController@search']);
+    Route::get('categories/search', ['as' => 'category.search', 'uses' => 'CategoriesController@search']);
+    Route::get('quotes/search', ['as' => 'quote.search', 'uses' => 'QuotesController@search']);
+    Route::get('currencies/search', ['as' => 'currency.search', 'uses' => 'CurrenciesController@search']);
+    Route::get('groups/search', ['as' => 'group.search', 'uses' => 'GroupsController@search']);
+    Route::get('discounts/search', ['as' => 'discount.search', 'uses' => 'DiscountsController@search']);
+    Route::get('status/search', ['as' => 'status.search', 'uses' => 'StatusController@search']);
+
+    // Users
+    Route::get('user/{user}/quotes', 'UsersController@getQuotes');	
+    Route::get('profile/{user}', ['as' => 'profile', 'uses' => 'UsersController@profile'])->middleware('auth');
+
+});
 
 //Route::group(['middleware' => 'auth', 'before' => 'has_role:admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
 Route::get('/', 'AdminController@index');

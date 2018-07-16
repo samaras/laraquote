@@ -24,7 +24,7 @@ class GroupRepository extends BaseRepository
 	 */
 	public function all()
 	{
-		return $this->model->all();
+		return $this->model->all(['id', 'group']);
 	}
 
 	/**
